@@ -1,0 +1,10 @@
+Initialization:
+  Configure TRISA, ANSELA for digital output
+  Configure LATA register as 0x80 - RA7 is turned on
+  
+In user_app.c:
+  while the program is running{
+    wait 250ms
+    if LATA is less than 0xBF increase LATA
+    else reset LATA to 0x80
+  }
