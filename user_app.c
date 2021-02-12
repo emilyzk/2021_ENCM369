@@ -103,8 +103,8 @@ void UserAppRun(void)
 {
 
 	/*WAIT 250 ms*/
-	u32 delaycount_ = FCY/4;
-	_delay(delaycount_);
+	u32 u32Counter = FCY/4;
+	_delay(u32Counter);
     
 	/*IF LATA IS LESS THAN */
 	if(LATA < 0xBF)
