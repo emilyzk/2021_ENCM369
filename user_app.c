@@ -76,6 +76,13 @@ Promises:
 void UserAppInitialize(void)
 {
 
+	/*INITIALIZE TRISA AND ANSELA TO 0*/
+	TRISA = 0x00;
+	ANSELA = 0x00;
+    
+ 	/*INITIALIZE LATA TO 128 TO ENSURE RA7'S LED IS ALWAYS ON*/  
+	LATA = 0x80;
+
 
 } /* end UserAppInitialize() */
 
@@ -94,6 +101,19 @@ Promises:
 */
 void UserAppRun(void)
 {
+
+	/*WAIT 250 ms*/
+	u32 delaycount_ = FCY/4;
+	_delay(delaycount_);
+    
+	/*IF LATA IS LESS THAN */
+	if(LATA < 0xBF)
+	{
+		LATA++;
+	} else 
+	{
+        	LATA = 0x80;
+	}
 
 
 } /* end UserAppRun */
