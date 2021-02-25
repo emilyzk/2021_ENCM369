@@ -75,13 +75,13 @@ Promises:
 */
 void UserAppInitialize(void)
 {
-  /*INITIALIZE TRISA AND ANSELA TO 0*/
+  /*INITIALIZE TRISA & ANSELA TO 0*/
 	TRISA = 0x00;
 	ANSELA = 0x00;
-  TRISB = 0x00;
-  ANSELB = 0x00;
+ 	TRISB = 0x00;
+ 	ANSELB = 0x00;
     
- 	/*INITIALIZE LATA TO 128 TO ENSURE RA7'S LED IS ALWAYS ON*/  
+ /*INITIALIZE LATA TO 128 TO ENSURE RA7'S LED IS ALWAYS ON*/  
 	LATA = 0x80;
 
 } /* end UserAppInitialize() */
@@ -101,9 +101,19 @@ Promises:
 */
 void UserAppRun(void)
 {
-    PORTA = PORTA ^ 0x01;
-    u32 u32counter = FCY/4;
-    _delay (u32counter);
+	static u8 u8PreviousState = 0x00; //Previous State of Button 0x00 = LOW, 0x01 = HIGH
+	
+	if ((u8PreviousState == 0x00) && (PORTB & 0x20) == 0x20)                                                      
+	{
+        	LATA = (LATA + 0x01)|0xC0; //Allows higher bits to be accumulated however...
+                                   //...only allows for RA0-5 to be set
+        	u32Count+=1;
+        	u8PreviousState = 0x01;    
+   	 }
+   	 else if ((PORTB & 0x20) != 0x20) //Check else if the button was pressed but isn't pressed now
+   	 {
+        	u8PreviousState = 0x00;    
+	 }
 
 } /* end UserAppRun */
 
