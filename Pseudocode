@@ -5,7 +5,7 @@ Initialization:
 In user_app.c:
   while the program is running{
     if RB5 goes from LOW to HIGH (button is pressed){
-      if LATA is less than 0xBF increase LATA
+      if LATA is less than 0xBF
         increase LATA
       else
         reset LATA to 0x80
