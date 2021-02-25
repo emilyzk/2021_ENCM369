@@ -75,7 +75,14 @@ Promises:
 */
 void UserAppInitialize(void)
 {
-
+  /*INITIALIZE TRISA AND ANSELA TO 0*/
+	TRISA = 0x00;
+	ANSELA = 0x00;
+  TRISB = 0x00;
+  ANSELB = 0x00;
+    
+ 	/*INITIALIZE LATA TO 128 TO ENSURE RA7'S LED IS ALWAYS ON*/  
+	LATA = 0x80;
 
 } /* end UserAppInitialize() */
 
